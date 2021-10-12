@@ -23,6 +23,11 @@ from . helper import *
 
 # Create your views here.
 
+def index(request):
+    return render(request, 'app.html')
+
+
+
 @api_view(['POST'])
 def white_space_attribute_list(request):
     try:
