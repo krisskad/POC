@@ -1,0 +1,39 @@
+.tag-cloud > div {
+  transition: 1.4s;
+}
+
+#chart-brand,
+#chart-sku {
+  width: 96%;
+  max-width: 48%;
+  box-shadow: none;
+  padding-left: 0;
+  background: #fff;
+}
+
+#chart-brand {
+  float: left;
+  position: relative;
+  transition: 1s ease transform;
+  z-index: 3;
+  transform: translateX(50%);
+}
+
+#chart-brand.chart-sku-activated {
+  transform: translateX(0);
+  transition: 1s ease transform;
+}
+
+#chart-sku {
+  float: left;
+  position: relative;
+  z-index: -2;
+  transition: 1s ease transform;
+  transform: translateX(-50%);
+}
+
+#chart-sku.active {
+  transition: 1.1s ease-in-out transform;
+  transform: translateX(0);
+  z-index: 1;
+}

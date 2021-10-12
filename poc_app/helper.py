@@ -52,7 +52,8 @@ def get_main_df(category, retailer):
 
 
 def get_attributes(category, retailer):
-    path = os.path.join(BASE_DIR, "poc_app", "demo", "autozone_attributes.xlsx")
+    path = os.path.join(BASE_DIR, "poc_app", "demo", "autozone_attributes(1).xlsx")
+    category, retailer = category.lower(), retailer.lower()
     df = pd.read_excel(path)
     df['category']= df['category'].str.lower()
     df['retailer']= df['retailer'].str.lower()
