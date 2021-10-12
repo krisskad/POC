@@ -51,6 +51,16 @@ def get_main_df(category, retailer):
     return df
 
 
+def get_attributes(category, retailer):
+    path = os.path.join(BASE_DIR, "poc_app", "demo", "autozone_attributes.xlsx")
+    df = pd.read_excel(path)
+    df['category']= df['category'].str.lower()
+    df['retailer']= df['retailer'].str.lower()
+    df['attribute']= df['attribute'].str.lower()
+    attr = df[(df.category == category) & (df.retailer == retailer)]["attribute"]
+    # print(attr)
+    return attr
+
 ''' Market Share '''
 
 

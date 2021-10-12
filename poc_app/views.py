@@ -84,16 +84,17 @@ def white_space_attribute_list(request):
             if category_request and retailer_request:
 
                 df = get_main_df(category_request, retailer_request)
+                attr = get_attributes(category=category_request, retailer=retailer_request)
 
                 # print(fetched)
-                if len(df)>1:
-                    x_attr = ["price_tier", "weight_tier", "product_size_tier", "amperage_tier", "Type"]
+                if len(df)>1 and len(attr)>0:
+                    # x_attr = ["price_tier", "weight_tier", "product_size_tier", "amperage_tier", "Type"]
 
                     # y_attr = list(fetched.filter(attr_id__name__icontains="tier").values_list("attr_id__name",
                     #                                                                           flat=True).distinct())
-                    y_attr =["price_tier", "weight_tier", "product_size_tier", "amperage_tier", "Type"]
+                    # y_attr =["price_tier", "weight_tier", "product_size_tier", "amperage_tier", "Type"]
 
-                    context = {"x_attr": x_attr, "y_attr": y_attr}
+                    context = {"x_attr": attr, "y_attr": attr}
 
                     return response.Response(status=status.HTTP_200_OK, data=context)
 
@@ -248,7 +249,9 @@ def market_share(request):
 
                 res = get_main_df(retailer=retailer_request, category=category_request)
                 context = res.to_json(orient="records")
+                # print(context)
                 context = json.loads(context)
+                # print(context)
                 return response.Response(status=status.HTTP_200_OK, data=context)
 
             else:
