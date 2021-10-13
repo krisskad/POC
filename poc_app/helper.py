@@ -24,7 +24,7 @@ def get_main_df(category, retailer):
     elif os.path.isfile(path2):
         df = pd.read_excel(path2)
     else:
-        return pd.DataFrame({"message":"No file found"})
+        return pd.DataFrame()
 
 
     # get the list of all integer columns
