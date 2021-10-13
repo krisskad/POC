@@ -17,6 +17,8 @@ from collections import deque
 
 def get_main_df(category, retailer):
     path = os.path.join(BASE_DIR, "poc_app", "demo", "{0}_{1}_dashboard.csv".format(category, retailer))
+    if not os.path.isfile(path):
+        path = os.path.join(BASE_DIR, "poc_app", "demo", "{0}_{1}_dashboard.xlsx".format(category, retailer))
 
     df = pd.read_csv(path)
     # get the list of all integer columns
@@ -52,15 +54,16 @@ def get_main_df(category, retailer):
 
 
 def get_attributes(category, retailer):
-    path = os.path.join(BASE_DIR, "poc_app", "demo", "autozone_attributes _1.xlsx")
+    path = os.path.join(BASE_DIR, "poc_app", "demo", "autozone_attributes.xlsx")
     category, retailer = category.lower(), retailer.lower()
     df = pd.read_excel(path)
-    df['category']= df['category'].str.lower()
-    df['retailer']= df['retailer'].str.lower()
-    df['attribute']= df['attribute'].str.lower()
+    df['category'] = df['category'].str.lower()
+    df['retailer'] = df['retailer'].str.lower()
+    df['attribute'] = df['attribute'].str.lower()
     attr = df[(df.category == category) & (df.retailer == retailer)]["attribute"]
     # print(attr)
     return attr
+
 
 ''' Market Share '''
 
