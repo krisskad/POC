@@ -253,6 +253,7 @@ def market_share(request):
             if retailer_request and category_request:
 
                 res = get_main_df(retailer=retailer_request, category=category_request)
+                res["market_share"] = res["market_share"]*100
                 context = res.to_json(orient="records")
                 # print(context)
                 context = json.loads(context)
