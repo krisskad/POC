@@ -16,11 +16,17 @@ from collections import deque
 
 
 def get_main_df(category, retailer):
-    path = os.path.join(BASE_DIR, "poc_app", "demo", "{0}_{1}_dashboard.csv".format(category, retailer))
-    if not os.path.isfile(path):
-        path = os.path.join(BASE_DIR, "poc_app", "demo", "{0}_{1}_dashboard.xlsx".format(category, retailer))
+    path1 = os.path.join(BASE_DIR, "poc_app", "demo", "{0}_{1}_dashboard.csv".format(category, retailer))
+    path2 = os.path.join(BASE_DIR, "poc_app", "demo", "{0}_{1}_dashboard.xlsx".format(category, retailer))
 
-    df = pd.read_csv(path)
+    if os.path.isfile(path1):
+        df = pd.read_csv(path1)
+    elif os.path.isfile(path2):
+        df = pd.read_excel(path2)
+    else:
+        return pd.DataFrame({"message":"No file found"})
+
+
     # get the list of all integer columns
     int_cols = list(df.select_dtypes('int64').columns)
 
@@ -160,6 +166,6 @@ def generate_pivote_whitespace(x_attr, y_attr, df):
     context = {"report_data": report_data,
                "pivot_data": pivot_data}
 
-    print(context)
+    # print(context)
 
     return context
