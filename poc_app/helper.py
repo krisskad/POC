@@ -87,7 +87,7 @@ def get_marketshare(df_time_series, product_master):
     df_ms['selling_price'] = (df_ms['revenue'] / df_ms['units_sold']).fillna(df_ms['selling_price'])
     df_ms['market_share'] = df_ms['revenue'] / df_ms['revenue'].sum()
     df_ms['market_share'] = df_ms['market_share'] * 100
-
+    #market_share
     return product_master.join(df_ms, on='skuid', lsuffix='.1', how='inner')
 
 
